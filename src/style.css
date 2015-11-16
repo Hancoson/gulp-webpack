@@ -1,0 +1,10 @@
+body {
+    background: red;
+    color: #fff
+}
+.icon{
+/*    background: url('logo.png');*/
+    width: 117px;
+    height: 33px;
+    display: block
+}
