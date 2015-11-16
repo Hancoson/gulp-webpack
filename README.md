@@ -1,2 +1,2 @@
 # gulp-webpack
-##gulp &amp; webpack 工程还管理
+##gulp &amp; webpack 工程话管理

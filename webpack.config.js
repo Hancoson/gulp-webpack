@@ -1,3 +1,8 @@
+/**
+ * Created by Guoxing.han on 2015-11-16.
+ */
+'use strict';
+
 var webpack = require('webpack');
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
 //var UglifyJsPlugin = require("./node_modules/webpack/lib/optimize/UglifyJsPlugin");
