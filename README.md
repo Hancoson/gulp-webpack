@@ -1,6 +1,8 @@
 # gulp-webpack
-##gulp &amp; webpack 工程化管理
+<br>
+##gulp &amp; webpack 工程化管理<br>
 ###1.livereload  实时自动刷新页面来开发
+<br>
 	-第一步：全局安装gulp 和 当前目录部署 gulp 和 gulp-livereload
 	```js
     npm install gulp -g
