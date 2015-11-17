@@ -24,8 +24,6 @@ var gulp = require('gulp'),
     webpack = require('gulp-webpack'),
     config = require('./webpack.config'),
     del = require('del');
-
-
 // Styles
 gulp.task('styles', function () {
     return gulp.src('src/styles/*.less', {style: 'expanded'})
