@@ -5,9 +5,10 @@
 
 module.exports = {
     entry: {
-        p1: './src/script/p1.js'
+        p1:'./src/scripts/p1.js'
     },
     output: {
+        //path:''
         filename: '[name].js'
     }
 };

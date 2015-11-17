@@ -1,0 +1,20 @@
+{
+  "name":"gulp-webpack",
+  "version":"0.0.1",
+  "description":"gulp-webpack demo",
+  "main":"index.js",
+  "scripts":{
+    "test":"echo \"Error: no test specified\" && exit 1"
+  },
+  "author":"Hancoson<hancoson@163.com>",
+  "bugs":{
+    "url":"https://github.com/hancoson/gulp-webpack"
+  },
+  "license":"ISC",
+  "keywords":[
+    "webpack"
+  ],
+  "dependencies": {
+    "jquery":"1.11.3"
+  }
+}

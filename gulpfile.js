@@ -34,27 +34,44 @@ gulp.task('styles', function () {
         .pipe(minifycss())
         .pipe(gulp.dest('dist/styles'))
         .pipe(livereload())
-        .pipe(notify({message: 'Styles task complete'}));
+        //.pipe(notify({message: 'Styles task complete'}));
+});
+//copy
+gulp.task('copy', function () {
+    gulp.src(['./src/scripts/lib/**/dist/jquery.min.js', './src/scripts/lib/**/dist/jquery.min.map'])
+        .pipe(gulp.dest('dist/scripts/lib'))
 });
 // Scripts
+gulp.task('lint', function  () {
+    gulp.src(['src/scripts/*.js','src/scripts/lib/*.js'])
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
+});
 gulp.task('scripts', function () {
-    return gulp.src('src/scripts/*.js')
+    return gulp.src('src/scripts/lib/*.js')
         .pipe(jshint.reporter('default'))
-        //.pipe(concat('main.js'))
+        .pipe(gulp.dest('dist/scripts/lib'))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/scripts/lib'))
+        .pipe(sourcemaps.write(''));
+        //.pipe(notify({message: 'Scripts task complete'}));
+});
+gulp.task('webpack', function () {
+    gulp.src('./src/scripts/*.js')
+        .pipe(webpack(config))
+        //.pipe(webpack())
         .pipe(gulp.dest('dist/scripts'))
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
-        .pipe(gulp.dest('dist/scripts'))
-        .pipe(sourcemaps.write(''))
-        .pipe(notify({message: 'Scripts task complete'}));
+        .pipe(gulp.dest('./dist/scripts'));
 });
-
 // Images
 gulp.task('images', function() {
     return gulp.src('src/images/**')
         .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
-        .pipe(gulp.dest('dist/images'))
-        .pipe(notify({ message: 'Images task complete' }));
+        .pipe(gulp.dest('dist/images'));
+        //.pipe(notify({ message: 'Images task complete' }));
 });
 
 // Clean
@@ -64,7 +81,7 @@ gulp.task('clean', function () {
 
 // Default task
 gulp.task('default', ['clean'], function () {
-    gulp.start('styles', 'scripts','images');
+    gulp.start('styles','images','copy','lint','scripts','webpack');
 });
 
 //watch
@@ -74,7 +91,7 @@ gulp.task('watch', function () {
     gulp.watch('src/styles/*.less', ['styles']);
 
     // Watch .js files
-    gulp.watch('src/scripts/*.js', ['scripts']);
+    gulp.watch('src/scripts/*.js', ['webpack']);
 
     // Watch any files in dist/, reload on change
     gulp.watch(['dist/**']).on('change', livereload.changed);
