@@ -4,7 +4,7 @@
 'use strict';
 
 var gulp = require('gulp'),
-//sass = require('gulp-ruby-sass'),
+    //sass = require('gulp-ruby-sass'),
     less = require("gulp-less"),
     jshint = require('gulp-jshint'),
     concat = require('gulp-concat'),
@@ -24,10 +24,22 @@ var gulp = require('gulp'),
     webpack = require('gulp-webpack'),
     config = require('./webpack.config'),
     del = require('del');
+
+// HTML处理
+gulp.task('html', function() {
+    var htmlSrc = '*.html',
+        htmlDst = 'dist';
+
+    gulp.src(htmlSrc)
+        .pipe(livereload())
+        .pipe(gulp.dest(htmlDst))
+});
+
 // Styles
 gulp.task('styles', function () {
-    return gulp.src('src/styles/*.less', {style: 'expanded'})
+    return gulp.src(['src/styles/*.less'] ,{style: 'expanded'})
         .pipe(less())
+        //.pipe(sass())
         .pipe(autoprefixer('last 2 version'))
         .pipe(gulp.dest('dist/styles'))
         .pipe(rename({suffix: '.min'}))
@@ -36,6 +48,20 @@ gulp.task('styles', function () {
         .pipe(livereload())
         //.pipe(notify({message: 'Styles task complete'}));
 });
+
+//gulp.task('styles', function () {
+//    var cssSrc = 'src/styles/*.scss',
+//        cssDst = 'dist/styles';
+//
+//    gulp.src(cssSrc)
+//        .pipe(sass({ style: 'expanded'}))
+//        .pipe(autoprefixer('last 2 version'))
+//        .pipe(gulp.dest(cssDst))
+//        .pipe(rename({ suffix: '.min' }))
+//        .pipe(minifycss())
+//        .pipe(livereload(server))
+//        .pipe(gulp.dest(cssDst));
+//});
 //copy
 gulp.task('copy', function () {
     gulp.src(['./src/scripts/lib/**/dist/jquery.min.js', './src/scripts/lib/**/dist/jquery.min.map'])
@@ -81,13 +107,16 @@ gulp.task('clean', function () {
 
 // Default task
 gulp.task('default', ['clean'], function () {
-    gulp.start('styles','images','copy','lint','scripts','webpack');
+    gulp.start('html','styles','images','copy','lint','scripts','webpack');
 });
 
 //watch
 gulp.task('watch', function () {
     livereload.listen(); //要在这里调用listen()方法
-
+        
+    gulp.watch('*.html', function(event){
+            gulp.run('html');
+    })
     gulp.watch('src/styles/*.less', ['styles']);
 
     // Watch .js files
