@@ -66,6 +66,8 @@ gulp.task('styles', function () {
 gulp.task('copy', function () {
     gulp.src(['./src/scripts/lib/**/dist/jquery.min.js', './src/scripts/lib/**/dist/jquery.min.map'])
         .pipe(gulp.dest('dist/scripts/lib'))
+    gulp.src(['./src/_json/*'])
+        .pipe(gulp.dest('dist/_json'))
 });
 // Scripts
 gulp.task('lint', function  () {
