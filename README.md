@@ -10,7 +10,7 @@ npm install gulp -g
 
 npm install gulp gulp-livereload --save-dev
 
-```js
+```
 
 -第二步：安装 chrome 插件 LiveReload
 
