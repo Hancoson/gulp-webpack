@@ -32,7 +32,7 @@
         "gulp-htmlmin":"*",
         "gulp-clean": "*",
         "gulp-less":"*",
-        "gulp-ruby-sass":"*",
+        "gulp-sass":"*",
         "gulp-livereload":"^3.8.1",
         "del": "*"
     }
