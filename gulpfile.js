@@ -94,7 +94,7 @@ gulp.task('webpack', function () {
         //.pipe(webpack())
         //.pipe(gulp.dest('dist/scripts'))
         //.pipe(rename({suffix: '.min'}))
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest('./dist/scripts'))
         .pipe(sourcemaps.write(''));
 });
