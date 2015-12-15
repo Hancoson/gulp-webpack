@@ -22,7 +22,7 @@ gulp watch
 
 ```
 
-- 第四步： 运行http-server,以服务器的方式打开页面，例如 localhost:8080
+- 第四步： 运行http-server（dist目录）,以服务器的方式打开页面，例如 localhost:8080
 
 ###2.webpack  实时自动刷新页面来开发
 
