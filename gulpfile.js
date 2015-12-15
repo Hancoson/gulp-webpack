@@ -39,14 +39,16 @@ gulp.task('html', function () {
 // Styles
 gulp.task('styles', function () {
     return gulp.src(['src/styles/*.scss'], {style: 'expanded'})
+        .pipe(sourcemaps.init())
         //.pipe(less())
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer('last 2 version'))
-        .pipe(gulp.dest('dist/styles'))
-        .pipe(rename({suffix: '.min'}))
+        //.pipe(gulp.dest('dist/styles'))
+        //.pipe(rename({suffix: '.min'}))
         .pipe(minifycss())
+        .pipe(sourcemaps.write(''))
         .pipe(gulp.dest('dist/styles'))
-        .pipe(livereload())
+        .pipe(livereload());
 });
 
 //gulp.task('styles', function () {
@@ -77,22 +79,24 @@ gulp.task('lint', function () {
 });
 gulp.task('scripts', function () {
     return gulp.src('src/scripts/lib/*.js')
+        .pipe(sourcemaps.init())
         .pipe(jshint.reporter('default'))
         .pipe(gulp.dest('dist/scripts/lib'))
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
-        .pipe(gulp.dest('dist/scripts/lib'))
-        .pipe(sourcemaps.write(''));
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('dist/scripts/lib'));
     //.pipe(notify({message: 'Scripts task complete'}));
 });
 gulp.task('webpack', function () {
     gulp.src('./src/scripts/*.js')
         .pipe(webpack(config))
         //.pipe(webpack())
-        .pipe(gulp.dest('dist/scripts'))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(uglify())
-        .pipe(gulp.dest('./dist/scripts'));
+        //.pipe(gulp.dest('dist/scripts'))
+        //.pipe(rename({suffix: '.min'}))
+        //.pipe(uglify())
+        .pipe(gulp.dest('./dist/scripts'))
+        .pipe(sourcemaps.write(''));
 });
 // Images
 gulp.task('images', function () {
