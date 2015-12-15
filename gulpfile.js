@@ -28,7 +28,7 @@ var gulp = require('gulp'),
 
 // HTML处理
 gulp.task('html', function () {
-    var htmlSrc = '*.html',
+    var htmlSrc = 'src/*.html',
         htmlDst = 'dist';
 
     gulp.src(htmlSrc)
