@@ -4,9 +4,7 @@
 'use strict';
 
 var gulp = require('gulp'),
-//sass = require('gulp-ruby-sass'),
     sass = require('gulp-sass'),
-//less = require("gulp-less"),
     jshint = require('gulp-jshint'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
@@ -20,7 +18,6 @@ var gulp = require('gulp'),
     replace = require('gulp-replace'),//文本替换
     notify = require('gulp-notify'),
     livereload = require('gulp-livereload'), //自动刷新
-//clean = require('gulp-clean'),
 // 静态文件打包合并
     webpack = require('gulp-webpack'),
     config = require('./webpack.config'),
@@ -51,19 +48,6 @@ gulp.task('styles', function () {
         .pipe(livereload());
 });
 
-//gulp.task('styles', function () {
-//    var cssSrc = 'src/styles/*.scss',
-//        cssDst = 'dist/styles';
-//
-//    gulp.src(cssSrc)
-//        .pipe(sass({ style: 'expanded'}))
-//        .pipe(autoprefixer('last 2 version'))
-//        .pipe(gulp.dest(cssDst))
-//        .pipe(rename({ suffix: '.min' }))
-//        .pipe(minifycss())
-//        .pipe(livereload(server))
-//        .pipe(gulp.dest(cssDst));
-//});
 //copy
 gulp.task('copy', function () {
     gulp.src(['./src/scripts/lib/**/dist/jquery.min.js', './src/scripts/lib/**/dist/jquery.min.map'])
@@ -122,8 +106,8 @@ gulp.task('watch', function () {
 
     gulp.watch('*.html', function (event) {
         gulp.run('html');
-    })
-    gulp.watch('src/styles/*.less', ['styles']);
+    });
+    gulp.watch('src/styles/*.scss', ['styles']);
 
     // Watch .js files
     gulp.watch('src/scripts/*.js', ['webpack']);
