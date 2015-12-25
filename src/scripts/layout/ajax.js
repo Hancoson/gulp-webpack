@@ -7,7 +7,6 @@ module.exports = function(url,type,dataType,data,err) {
         type    : type,
         dataType: dataType,
         data    : data
-        //jsonp   : "jsonpcallback"
     }).fail(function () {
         alert(err);
     })

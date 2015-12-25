@@ -34,6 +34,7 @@
         "gulp-less":"*",
         "gulp-sass":"*",
         "gulp-livereload":"^3.8.1",
+        "gulp-removelogs":"*",
         "del": "*"
     }
 }

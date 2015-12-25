@@ -34,3 +34,5 @@ gulp-livereload
 ###3.模块化开发
 
 ###4.公共文件打包到同一文件中
+
+###5.开发环境```gulp dev```与生产环境```gulp release```分离开

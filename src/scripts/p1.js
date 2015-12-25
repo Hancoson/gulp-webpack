@@ -9,12 +9,10 @@ var ajax = require('./layout/ajax.js');
 //console.log(3);
 var url='../_json/start.json',
     type="get",
-    dataType="jsonp",
-    data={
-        "qq":123
-    },
-    err=123;
+    dataType="json",
+    data=2,
+    err=1;
 ajax(url,type,dataType,data,err).done(function(data){
-    alert(data);
+    console.log(data[0].msg);
 });
 

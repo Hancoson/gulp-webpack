@@ -16,10 +16,12 @@ body {
         width: 200px;
         background: #ff0;
         color: $balck;
+        border-radius: 18px;
         p {
+
             line-height: 160%;
             background: #0ff;
-            font-size: 50px;
+            font-size: 55px;
         }
     }
 }
