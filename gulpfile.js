@@ -96,7 +96,7 @@ gulp.task('scripts', function () {
         dist: 'dist/scripts/lib'
     };
     if (env.production) {
-        //生成版本
+        //生产版本
         console.log('release');
         return gulp.src(path.src)
             .pipe(removeLogs())
@@ -118,7 +118,7 @@ gulp.task('webpack', function () {
     };
 
     if (env.production) {
-        //生成版本
+        //生产版本
         return gulp.src(path.src)
             .pipe(webpack(config))
             .pipe(removeLogs())
